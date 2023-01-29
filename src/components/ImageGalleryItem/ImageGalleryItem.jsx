@@ -1,20 +1,19 @@
-import s from './ImageGalleryItem.module.css';
+import css from './ImageGalleryItem.module.css';
 import PropTypes from 'prop-types';
 
-export const ImageGalleryItem = ({
-  webformatURL,
-  largeImageURL,
-  tags,
-  openModal,
-}) => {
+export const ImageGalleryItem = ({ webformatURL, tags, openModal }) => {
   return (
     <li
-      className={s.ImageGalleryItem}
+      className={css.ImageGalleryItem}
       onClick={() => {
-        openModal(largeImageURL);
+        openModal();
       }}
     >
-      <img className={s.ImageGalleryItemImage} src={webformatURL} alt={tags} />
+      <img
+        className={css.ImageGalleryItemImage}
+        src={webformatURL}
+        alt={tags}
+      />
     </li>
   );
 };
@@ -24,7 +23,7 @@ ImageGalleryItem.protoTypes = {
     PropTypes.shape({
       id: PropTypes.number,
       webformatURL: PropTypes.string.isRequired,
-      user: PropTypes.string.isRequired,
+      tags: PropTypes.string.isRequired,
     })
   ).isRequired,
   openModal: PropTypes.func.isRequired,

@@ -1,35 +1,20 @@
 import { ImageGallery } from 'components/ImageGallery/ImageGallery';
 import { Searchbar } from 'components/Searchbar/Searchbar';
 import s from './App.module.css';
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Modal } from 'components/Modal/Modal';
 
-export class App extends Component {
-  state = {
-    dataImages: [],
-    query: '',
-    showModal: false,
-    largeImage: '',
-  };
+export function App() {
+  const [showModal, setShowModal] = useState(false);
 
-  changeQuery = query => {
-    this.setState({ query });
+  const toggleModal = () => {
+    setShowModal(prev => !prev);
   };
-
-  toggleModal = largeImage => {
-    this.setState(prev => ({ showModal: !prev.showModal, largeImage }));
-  };
-
-  render() {
-    const { query, showModal, largeImage } = this.state;
-    return (
-      <div className={s.App}>
-        <Searchbar onSubmit={this.changeQuery} />
-        <ImageGallery query={query} openModal={this.toggleModal} />
-        {showModal && (
-          <Modal largeImageUrl={largeImage} closeModal={this.toggleModal} />
-        )}
-      </div>
-    );
-  }
+  return (
+    <div className={s.App}>
+      <Searchbar />
+      <ImageGallery openModal={toggleModal} />
+      {showModal && <Modal closeModal={toggleModal} />}
+    </div>
+  );
 }
