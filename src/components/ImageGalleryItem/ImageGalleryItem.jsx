@@ -28,6 +28,7 @@ ImageGalleryItem.protoTypes = {
     PropTypes.shape({
       id: PropTypes.number,
       webformatURL: PropTypes.string.isRequired,
+      largeImageURL: PropTypes.string.isRequired,
       tags: PropTypes.string.isRequired,
     })
   ).isRequired,

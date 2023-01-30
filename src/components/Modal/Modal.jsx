@@ -1,11 +1,11 @@
-import s from './Modal.module.css';
+import css from './Modal.module.css';
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 import { createPortal } from 'react-dom';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export function Modal({ closeModal, modalData }) {
+export const Modal = memo(({ closeModal, modalData }) => {
   useEffect(() => {
     window.addEventListener('keydown', closeModalOnEscape);
 
@@ -27,14 +27,14 @@ export function Modal({ closeModal, modalData }) {
   };
 
   return createPortal(
-    <div className={s.Overlay} onClick={closeModalOnBackdropClick}>
-      <div className={s.Modal}>
+    <div className={css.Overlay} onClick={closeModalOnBackdropClick}>
+      <div className={css.Modal}>
         <img src={modalData} alt="" />
       </div>
     </div>,
     modalRoot
   );
-}
+});
 
 Modal.propTypes = {
   closeModal: PropTypes.func.isRequired,

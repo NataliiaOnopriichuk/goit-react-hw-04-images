@@ -4,30 +4,30 @@ import { App } from 'components/App/App';
 import './index.css';
 
 
-export const IsDataImagesContext = createContext();
-export const IsQueryContext = createContext();
+export const DataImagesContext = createContext();
+export const QueryContext = createContext();
 export const PageContext = createContext();
 
 
 const IsDataImagesContextProvider = ({ children }) => {
   const [dataImages, setDataImages] = useState([]);
   return (
-    <IsDataImagesContext.Provider
+    <DataImagesContext.Provider
       value={{ dataImages, setDataImages}}
     >
       {children}
-    </IsDataImagesContext.Provider>
+    </DataImagesContext.Provider>
   );
 }
 
 const IsQueryContextProvider = ({ children }) => {
   const [query, setQuery] = useState('');
   return (
-    <IsQueryContext.Provider
+    <QueryContext.Provider
       value={{ query, setQuery}}
     >
       {children}
-    </IsQueryContext.Provider>
+    </QueryContext.Provider>
   );
 }
 

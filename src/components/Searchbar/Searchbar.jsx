@@ -1,13 +1,12 @@
 import css from './Searchbar.module.css';
-import PropTypes from 'prop-types';
 import { BsSearch } from 'react-icons/bs';
-import { useContext, useState } from 'react';
-import { IsDataImagesContext, IsQueryContext, PageContext } from 'index';
+import { memo, useContext, useState } from 'react';
+import { DataImagesContext, QueryContext, PageContext } from 'index';
 
-export function Searchbar() {
+export const Searchbar = memo(() => {
   const [inputValue, setInputValue] = useState('');
-  const { setQuery } = useContext(IsQueryContext);
-  const { setDataImages } = useContext(IsDataImagesContext);
+  const { setQuery } = useContext(QueryContext);
+  const { setDataImages } = useContext(DataImagesContext);
   const { setPage } = useContext(PageContext);
 
   const onChangeInputValue = event => {
@@ -15,16 +14,12 @@ export function Searchbar() {
     setInputValue(value);
   };
 
-  const resetInputValue = () => {
-    setInputValue('');
-  };
-
   const onSubmit = event => {
     event.preventDefault();
     setQuery(inputValue);
     setPage(1);
     setDataImages([]);
-    resetInputValue();
+    setInputValue('');
   };
 
   return (
@@ -48,8 +43,4 @@ export function Searchbar() {
       </form>
     </header>
   );
-}
-
-// Searchbar.propTypes = {
-//   onSubmitForm: PropTypes.func.isRequired,
-// };
+});
