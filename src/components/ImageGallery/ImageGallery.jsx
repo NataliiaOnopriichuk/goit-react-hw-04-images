@@ -1,7 +1,7 @@
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import css from './ImageGallery.module.css';
 import PropTypes from 'prop-types';
-import React, { useContext, useState, useEffect, createRef } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { getSearchedNewsApi } from 'service/api.js';
 import { Loader } from 'components/Loader/Loader';
 import { Button } from 'components/Button/Button';
