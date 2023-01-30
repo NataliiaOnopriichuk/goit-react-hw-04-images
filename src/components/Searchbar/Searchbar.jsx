@@ -2,11 +2,13 @@ import css from './Searchbar.module.css';
 import PropTypes from 'prop-types';
 import { BsSearch } from 'react-icons/bs';
 import { useContext, useState } from 'react';
-import { IsQueryContext } from 'index';
+import { IsDataImagesContext, IsQueryContext, PageContext } from 'index';
 
 export function Searchbar() {
   const [inputValue, setInputValue] = useState('');
   const { setQuery } = useContext(IsQueryContext);
+  const { setDataImages } = useContext(IsDataImagesContext);
+  const { setPage } = useContext(PageContext);
 
   const onChangeInputValue = event => {
     const { value } = event.target;
@@ -20,6 +22,8 @@ export function Searchbar() {
   const onSubmit = event => {
     event.preventDefault();
     setQuery(inputValue);
+    setPage(1);
+    setDataImages([]);
     resetInputValue();
   };
 

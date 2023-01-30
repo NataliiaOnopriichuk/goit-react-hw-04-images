@@ -5,16 +5,17 @@ import React, { useState } from 'react';
 import { Modal } from 'components/Modal/Modal';
 
 export function App() {
-  const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState(null);
 
-  const toggleModal = () => {
-    setShowModal(prev => !prev);
+  const toggleModal = (data = null) => {
+    setModalData(data);
   };
+
   return (
     <div className={s.App}>
       <Searchbar />
       <ImageGallery openModal={toggleModal} />
-      {showModal && <Modal closeModal={toggleModal} />}
+      {modalData && <Modal modalData={modalData} closeModal={toggleModal} />}
     </div>
   );
 }

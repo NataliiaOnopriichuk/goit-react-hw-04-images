@@ -6,6 +6,7 @@ import './index.css';
 
 export const IsDataImagesContext = createContext();
 export const IsQueryContext = createContext();
+export const PageContext = createContext();
 
 
 const IsDataImagesContextProvider = ({ children }) => {
@@ -30,11 +31,24 @@ const IsQueryContextProvider = ({ children }) => {
   );
 }
 
+const PageContextProvider = ({ children }) => {
+  const [page, setPage] = useState(1);
+  return (
+    <PageContext.Provider
+      value={{ page, setPage}}
+    >
+      {children}
+    </PageContext.Provider>
+  );
+}
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <IsDataImagesContextProvider>
       <IsQueryContextProvider>
-        <App />
+        <PageContextProvider>
+           <App />
+        </PageContextProvider>
         </IsQueryContextProvider>
     </IsDataImagesContextProvider>
   </React.StrictMode>

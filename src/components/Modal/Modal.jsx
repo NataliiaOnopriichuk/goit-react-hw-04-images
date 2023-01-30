@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export function Modal({ closeModal }) {
+export function Modal({ closeModal, modalData }) {
   useEffect(() => {
     window.addEventListener('keydown', closeModalOnEscape);
 
@@ -29,7 +29,7 @@ export function Modal({ closeModal }) {
   return createPortal(
     <div className={s.Overlay} onClick={closeModalOnBackdropClick}>
       <div className={s.Modal}>
-        {/* <img src={largeImageURL} alt={tags} /> */}
+        <img src={modalData} alt="" />
       </div>
     </div>,
     modalRoot
@@ -38,4 +38,5 @@ export function Modal({ closeModal }) {
 
 Modal.propTypes = {
   closeModal: PropTypes.func.isRequired,
+  modalData: PropTypes.string.isRequired,
 };
