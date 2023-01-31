@@ -1,7 +1,11 @@
 import css from './Searchbar.module.css';
 import { BsSearch } from 'react-icons/bs';
 import { memo, useContext, useState } from 'react';
-import { DataImagesContext, QueryContext, PageContext } from 'index';
+import {
+  DataImagesContext,
+  PageContext,
+  QueryContext,
+} from 'service/serviceContext';
 
 export const Searchbar = memo(() => {
   const [inputValue, setInputValue] = useState('');

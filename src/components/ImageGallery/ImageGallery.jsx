@@ -5,7 +5,11 @@ import React, { useContext, useState, useEffect } from 'react';
 import { getSearchedNewsApi } from 'service/api.js';
 import { Loader } from 'components/Loader/Loader';
 import { Button } from 'components/Button/Button';
-import { DataImagesContext, QueryContext, PageContext } from 'index';
+import {
+  DataImagesContext,
+  PageContext,
+  QueryContext,
+} from 'service/serviceContext';
 
 export function ImageGallery({ openModal }) {
   const { dataImages, setDataImages } = useContext(DataImagesContext);

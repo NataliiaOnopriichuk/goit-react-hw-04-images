@@ -7,18 +7,17 @@ const modalRoot = document.querySelector('#modal-root');
 
 export const Modal = memo(({ closeModal, modalData }) => {
   useEffect(() => {
+    const closeModalOnEscape = event => {
+      if (event.code === 'Escape') {
+        closeModal();
+      }
+    };
     window.addEventListener('keydown', closeModalOnEscape);
 
     return () => {
       window.removeEventListener('keydown', closeModalOnEscape);
     };
-  });
-
-  const closeModalOnEscape = event => {
-    if (event.code === 'Escape') {
-      closeModal();
-    }
-  };
+  }, [closeModal]);
 
   const closeModalOnBackdropClick = event => {
     if (event.target === event.currentTarget) {
